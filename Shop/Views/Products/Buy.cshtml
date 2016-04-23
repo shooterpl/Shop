@@ -1,0 +1,10 @@
+﻿@model Shop.ViewModels.ProductViewModel
+
+@{
+    ViewBag.Title = "Buy";
+}
+
+<h4>Do you want to buy @Model.name ?</h4>
+    <input type="submit" title="Buy" value="Buy" onclick="location.href='@Url.Action("Purchase", "Products", new { name = Model.name })'" />
+    <input type="submit" title="Cancel" value="Cancel" onclick="location.href='@Url.Action("Index", "Products")'" />
+
