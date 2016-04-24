@@ -17,12 +17,13 @@ namespace Shop.Controllers
         {
             List<Product> productList = db.Products.Where(x => x.quantity > 0).ToList();
             List<ProductViewModel> productViewModelList = new List<ProductViewModel>();
-            foreach (Product product in productList)
+            foreach (Product model in productList)
             {
                 ProductViewModel viewModel = new ProductViewModel();
-                viewModel.name = product.name;
-                viewModel.quantity = product.quantity;
-                viewModel.barcode = product.barcode;
+                viewModel.name = model.name;
+                viewModel.quantity = model.quantity;
+                viewModel.barcode = model.barcode;
+                viewModel.price = model.price;
                 productViewModelList.Add(viewModel);
             }
             return View(productViewModelList);
@@ -35,7 +36,9 @@ namespace Shop.Controllers
             var model = productList.FirstOrDefault(x => x.name == name);
             ProductViewModel viewModel = new ProductViewModel();
             viewModel.name = model.name;
-
+            viewModel.price = model.price;
+            viewModel.quantity = model.quantity;
+            viewModel.barcode = model.barcode;
             return View(viewModel);
         }
 
@@ -50,6 +53,7 @@ namespace Shop.Controllers
             viewModel.name = model.name;
             viewModel.barcode = model.barcode;
             viewModel.quantity = model.quantity;
+            viewModel.price = model.price;
             return View(viewModel);
         }
 
@@ -61,6 +65,7 @@ namespace Shop.Controllers
             viewModel.name = model.name;
             viewModel.barcode = model.barcode;
             viewModel.quantity = model.quantity;
+            viewModel.price = model.price;
             return View(viewModel);
         }
     }

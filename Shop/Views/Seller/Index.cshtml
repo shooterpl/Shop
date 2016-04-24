@@ -1,12 +1,13 @@
 ﻿@model IEnumerable<Shop.ViewModels.ProductViewModel>
 
 @{
-    ViewBag.Title = "List of products";
+    ViewBag.Title = "Admin Panel";
 }
 
 <h2>Product List</h2>
 
 <p>
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
@@ -19,7 +20,7 @@
         <th>
             @Html.DisplayNameFor(model => model.barcode)
         </th>
-        <th id="price">
+        <th>
             @Html.DisplayNameFor(model => model.price)
         </th>
         <th></th>
@@ -27,6 +28,7 @@
 
 @foreach (var item in Model) {
     <tr>
+        @Html.HiddenFor(modelItem => item.id)
         <td>
             @Html.DisplayFor(modelItem => item.name)
         </td>
@@ -36,15 +38,14 @@
         <td>
             @Html.DisplayFor(modelItem => item.barcode)
         </td>
-        <td id="price">
+        <td>
             @Html.DisplayFor(modelItem => item.price)
         </td>
         <td>
-            @Html.ActionLink("Buy", "Buy", new { name=item.name}) |
-            @Html.ActionLink("Product Info", "ProductInfo", new { name=item.name })
+            @Html.ActionLink("Edit", "Edit", new {  name =item.name }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
         </td>
     </tr>
 }
 
 </table>
-

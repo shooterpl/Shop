@@ -1,25 +1,23 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Extra Store";
 }
 
 <div class="jumbotron">
-    <h1>Karol's Store</h1>
+    <h1>Extra Store</h1>
     
 </div>
 
 <div class="row">
     <div class="col-md-4">
         <h2>Mouse</h2>
-        <p>
-            <img src="~/Img/mouse.jpg" height="300"/>
-        </p>
+            <input type="image" height="300" src="~/Img/A4Tech Mouse.jpg" title="Back to list" onclick="location.href='@Url.Action("ProductInfo", "Products", new { name = "A4Tech Mouse" })'" />
     </div>
     <div class="col-md-4">
         <h2>Keyboard</h2>
-        <img src="~/Img/keyboard.jpg" height="300" />
+        <input type="image" height="300" src="~/Img/Gigabyte Keyboard.jpg" title="Back to list" onclick="location.href='@Url.Action("ProductInfo", "Products", new { name = "Gigabyte Keyboard" })'" />
     </div>
     <div class="col-md-4">
         <h2>Headphones</h2>
-        <img src="~/Img/headphones.jpg" height="300"/>
+        <input type="image" height="300" src="~/Img/Logitech Headphones.jpg" title="Back to list" onclick="location.href='@Url.Action("ProductInfo", "Products", new { name = "Logitech Headphones" })'" />
     </div>
 </div>

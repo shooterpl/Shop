@@ -8,11 +8,14 @@ namespace Shop.ViewModels
 {
     public class ProductViewModel
     {
+        public int id { get; set; }
         [Display(Name = "Product Name")]
         public string name { get; set; }
         [Display(Name = "Quantity")]
         public int quantity { get; set; }
         [Display(Name = "Barcode Number")]
         public int barcode { get; set; }
+        [Display(Name = "Price")]
+        public float price { get; set; }
     }
 }

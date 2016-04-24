@@ -70,3 +70,4 @@ c:\users\maciek\documents\visual studio 2015\Projects\Shop\Shop\obj\Debug\Shop.M
 c:\users\maciek\documents\visual studio 2015\Projects\Shop\Shop\obj\Debug\Shop.csproj.GenerateResource.Cache
 c:\users\maciek\documents\visual studio 2015\Projects\Shop\Shop\obj\Debug\Shop.Migrations.addmigrationproducts.resources
 c:\users\maciek\documents\visual studio 2015\Projects\Shop\Shop\obj\Debug\Shop.csprojResolveAssemblyReference.cache
+C:\Users\maciek\documents\visual studio 2015\Projects\Shop\Shop\obj\Debug\Shop.Migrations.price.resources

@@ -5,4 +5,20 @@
 }
 
 <h2>@Model.name</h2>
-
+<table>
+    <tr id="price">
+        <td>Product Price :</td>
+        <td>@Html.DisplayFor(modelItem => Model.price)</td>
+    </tr>
+    <tr>
+        <td>Available Quantity :</td>
+        <td>@Html.DisplayFor(modelItem => Model.quantity)</td>
+    </tr>
+    <tr>
+        <td>Barcode Number :</td>
+        <td>@Html.DisplayFor(modelItem => Model.barcode)</td>
+    </tr>
+</table>
+<input type="submit" title="Back to list" value="Back to list" onclick="location.href='@Url.Action("Index", "Products")'" />
+<br />
+<img src="~/Img/@(Model.name).jpg" height="300" />
