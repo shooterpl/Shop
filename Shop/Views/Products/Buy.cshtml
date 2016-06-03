@@ -4,26 +4,63 @@
     ViewBag.Title = "Buy";
 }
 
+@if (TempData["notice"] != null)
+{   <br />
+    <p class="alert alert-danger">@TempData["notice"]</p>
+}
+
+@if (TempData["summary"] != null)
+{   <br />
+    <p class="alert alert-success">@TempData["summary"]</p>
+    <table id="orderSummary">
+        <tr>
+            <td>Model name:</td>
+            <td>@Model.name</td>
+        </tr>
+        <tr>
+            <td>Quantity:</td>
+            <td>@Model.orderedQuantity</td>
+        </tr>
+        <tr>
+            <td>Price for one</td>
+            <td>@Model.price</td>
+        </tr>
+        <tr>
+            <td>Total price:</td>
+            <td style="font-weight:bold">@ViewBag.Total</td>
+        </tr>
+    </table>
+    <input type="button" value="Accept an order" onclick="location.href='@Url.Action("Purchase", "Products", @Model)'" />
+    <br />
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.id)
 <h4>Do you want to buy @Model.name?</h4>
-<INPUT id="spinner" TYPE="NUMBER" MIN="0" MAX="@Model.quantity" STEP="1" VALUE="1" SIZE="6">
-<input type="submit" title="Buy" value="Buy" onclick="location.href='@Url.Action("Purchase", "Products", new { name = Model.name})'" />
-<input type="submit" title="Cancel" value="Cancel" onclick="location.href='@Url.Action("Index", "Products")'" />
+@Html.EditorFor(model => Model.orderedQuantity)
+
+ <input type="submit" title="Buy" value="Buy" />
+
+<input type="button" title="Cancel" value="Cancel" onclick="location.href='@Url.Action("Index", "Products")'" />
 
 <table>
     <tr id="price">
         <td>Product Price :</td>
-        <td>@Html.DisplayFor(modelItem => Model.price)</td>
+        <td>@Html.DisplayFor(model => Model.price)</td>
     </tr>
     <tr>
         <td>Available Quantity :</td>
-        <td>@Html.DisplayFor(modelItem => Model.quantity)</td>
+        <td>@Html.DisplayFor(model => Model.quantity)</td>
     </tr>
     <tr>
         <td>Barcode Number :</td>
-        <td>@Html.DisplayFor(modelItem => Model.barcode)</td>
+        <td>@Html.DisplayFor(model => Model.barcode)</td>
     </tr>
 </table>
 <br />
 <img src="~/Img/@(Model.name).jpg" height="300" />
 
-
+}

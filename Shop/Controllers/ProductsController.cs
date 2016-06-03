@@ -39,22 +39,39 @@ namespace Shop.Controllers
             viewModel.price = model.price;
             viewModel.quantity = model.quantity;
             viewModel.barcode = model.barcode;
+            viewModel.orderedQuantity = 1;
             return View(viewModel);
         }
 
-        [Authorize]
-        public ActionResult Purchase(string name)
+        [HttpPost]
+        public ActionResult Buy(ProductViewModel viewModel)
         {
             List<Product> productList = db.Products.ToList();
-            ProductViewModel viewModel = new ProductViewModel();
-            var model = productList.FirstOrDefault(x => x.name == name);
-            model.quantity--;
-            db.SaveChanges();
+            var model = productList.FirstOrDefault(x => x.name == viewModel.name);
+            if (viewModel.orderedQuantity < 1) viewModel.orderedQuantity = 1;
+            if (viewModel.orderedQuantity > model.quantity)
+            {
+                TempData["notice"] = "Sorry, number of product do you want is limmited due to fact that we do not have enought products in store now";
+                viewModel.orderedQuantity = model.quantity;
+            }
+            TempData["summary"] = "Please accept your order";
             viewModel.name = model.name;
             viewModel.barcode = model.barcode;
             viewModel.quantity = model.quantity;
             viewModel.price = model.price;
+            ViewBag.Total = model.price * viewModel.orderedQuantity;
             return View(viewModel);
+        }
+
+
+        [Authorize]
+        public ActionResult Purchase(ProductViewModel viewModel)
+        {
+            List<Product> productList = db.Products.ToList();
+            var model = productList.FirstOrDefault(x => x.name == viewModel.name);
+            model.quantity -= viewModel.orderedQuantity;
+            db.SaveChanges();
+            return View();
         }
 
         public ActionResult ProductInfo(string name)

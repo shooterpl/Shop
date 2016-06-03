@@ -17,5 +17,6 @@ namespace Shop.ViewModels
         public int barcode { get; set; }
         [Display(Name = "Price")]
         public float price { get; set; }
+        public int orderedQuantity { get; set; }
     }
 }
